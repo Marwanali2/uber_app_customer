@@ -1,0 +1,1 @@
+const kProductsBox = 'products_box';
