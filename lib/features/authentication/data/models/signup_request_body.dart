@@ -8,9 +8,9 @@ class SignUpRequestBody {
   final String email;
   final String password;
   final String phone;
-  String? blockState = 'false';
+  final String blockState;
   SignUpRequestBody({
-    this.blockState,
+    this.blockState = 'true',
     required this.name,
     required this.email,
     required this.password,

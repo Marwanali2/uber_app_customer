@@ -8,7 +8,7 @@ import 'package:uber_app_customer/features/authentication/presentation/view/widg
 
 import '../../../../core/styles/app_styles.dart';
 import '../../../../core/widgets/custom_app_button.dart';
-import '../controller/cubit/sign_up_cubit.dart';
+import '../controller/signup_cubit/sign_up_cubit.dart';
 import 'login_screen.dart';
 import 'widgets/logo_and_authentication_text.dart';
 import 'widgets/signup_bloc_listener.dart';

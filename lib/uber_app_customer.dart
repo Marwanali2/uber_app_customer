@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:uber_app_customer/features/authentication/data/repo/firebase_authentication_impl.dart';
+import 'package:uber_app_customer/features/authentication/presentation/controller/cubit/login_cubit.dart';
 import 'package:uber_app_customer/features/authentication/presentation/view/login_screen.dart';
 
 import 'core/styles/app_theme.dart';
@@ -16,6 +19,9 @@ class UberAppCustomer extends StatelessWidget {
         child: MaterialApp(
             theme: AppTheme.darkTheme,
             debugShowCheckedModeBanner: false,
-            home: const LoginScreen()));
+            home: BlocProvider(
+              create: (context) => LoginCubit(FirebaseAuthenticationImpl()),
+              child: const LoginScreen(),
+            )));
   }
 }

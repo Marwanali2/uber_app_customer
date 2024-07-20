@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/helpers/app_spaces.dart';
 import '../../../../../core/widgets/custom_app_text_form_field.dart';
-import '../../controller/cubit/sign_up_cubit.dart';
+import '../../controller/signup_cubit/sign_up_cubit.dart';
 
 class SignUpTextFields extends StatefulWidget {
   const SignUpTextFields({super.key});

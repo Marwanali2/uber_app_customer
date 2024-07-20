@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:uber_app_customer/core/methods/app_notifier.dart';
+import 'package:uber_app_customer/features/authentication/presentation/controller/cubit/login_cubit.dart';
 import 'package:uber_app_customer/features/home/presentation/view/home_scree.dart';
 
 import '../../../../../core/widgets/loading_indicator.dart';
-import '../../controller/signup_cubit/sign_up_cubit.dart';
 
-class SignUpBlocListener extends StatelessWidget {
-  const SignUpBlocListener({super.key});
+class LoginBlocListener extends StatelessWidget {
+  const LoginBlocListener({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<SignUpCubit, SignUpState>(
+    return BlocListener<LoginCubit, LoginState>(
         listener: (context, state) {
           if (state is Failure) {
             Navigator.pop(context);
@@ -25,7 +25,7 @@ class SignUpBlocListener extends StatelessWidget {
             showDialog(
                 context: context,
                 builder: (context) => const LoadingIndicator(
-                      text: 'Creating Account ....',
+                      text: 'Logging In ....',
                     ));
           }
         },
