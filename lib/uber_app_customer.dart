@@ -14,7 +14,7 @@ class UberAppCustomer extends StatelessWidget {
         minTextAdapt: true,
         splitScreenMode: true,
         child: MaterialApp(
-            theme: AppTheme.lightTheme,
+            theme: AppTheme.darkTheme,
             debugShowCheckedModeBanner: false,
             home: const LoginScreen()));
   }

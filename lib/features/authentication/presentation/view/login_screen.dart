@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:uber_app_customer/core/styles/app_styles.dart';
 
 import '../../../../core/helpers/app_spaces.dart';
+import '../../../../core/methods/app_notifier.dart';
+import '../../../../core/methods/internet_connection.dart';
 import '../../../../core/widgets/custom_app_button.dart';
 import 'signup_screen.dart';
 import 'widgets/login_text_fields.dart';
@@ -28,7 +31,19 @@ class LoginScreen extends StatelessWidget {
                 verticalSpace(20),
                 const LoginTextFields(),
                 verticalSpace(15),
-                const CustomAppButton(
+                CustomAppButton(
+                  onPressed: () async {
+                    var connected = await Internet.checkInternetConnection();
+                    if (connected) {
+                    } else {
+                      if (context.mounted) {
+                        appNotifier(
+                            context,
+                            const CustomSnackBar.error(
+                                message: 'Check Your Internet Connection'));
+                      }
+                    }
+                  },
                   text: 'Login',
                   height: 43,
                 ),

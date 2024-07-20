@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:uber_app_customer/core/helpers/app_spaces.dart';
+import 'package:uber_app_customer/core/methods/app_notifier.dart';
+import 'package:uber_app_customer/core/methods/internet_connection.dart';
 import 'package:uber_app_customer/features/authentication/presentation/view/widgets/sign_up_text_fields.dart';
 
 import '../../../../core/styles/app_styles.dart';
@@ -28,7 +31,19 @@ class SignUpScreen extends StatelessWidget {
                 verticalSpace(20),
                 const SignUpTextFields(),
                 verticalSpace(15),
-                const CustomAppButton(
+                CustomAppButton(
+                  onPressed: () async {
+                    var connected = await Internet.checkInternetConnection();
+                    if (connected) {
+                    } else {
+                      if (context.mounted) {
+                        appNotifier(
+                            context,
+                            const CustomSnackBar.error(
+                                message: 'Check Your Internet Connection'));
+                      }
+                    }
+                  },
                   text: 'Sign Up',
                   height: 43,
                 ),

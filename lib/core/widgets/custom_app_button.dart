@@ -7,10 +7,12 @@ class CustomAppButton extends StatelessWidget {
       {super.key,
       required this.text,
       required this.height,
-      this.buttonBackgroundColor});
+      this.buttonBackgroundColor,
+      this.onPressed});
   final String text;
   final int height;
   final Color? buttonBackgroundColor;
+  final void Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,7 @@ class CustomAppButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
       ),
       minWidth: double.infinity,
-      onPressed: () {},
+      onPressed: onPressed,
       color: buttonBackgroundColor ?? Theme.of(context).colorScheme.onSecondary,
       child: Text(text,
           style: AppStyles.font20Regular.copyWith(
