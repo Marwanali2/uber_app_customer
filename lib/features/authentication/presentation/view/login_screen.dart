@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:uber_app_customer/core/styles/app_styles.dart';
+import 'package:uber_app_customer/features/authentication/data/repo/firebase_authentication_impl.dart';
+import 'package:uber_app_customer/features/authentication/presentation/controller/cubit/sign_up_cubit.dart';
 
 import '../../../../core/helpers/app_spaces.dart';
 import '../../../../core/methods/app_notifier.dart';
@@ -57,7 +60,11 @@ class LoginScreen extends StatelessWidget {
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const SignUpScreen()));
+                                  builder: (context) => BlocProvider(
+                                        create: (context) => SignUpCubit(
+                                            FirebaseAuthenticationImpl()),
+                                        child: const SignUpScreen(),
+                                      )));
                         },
                         child: Text(
                           'Sign Up',

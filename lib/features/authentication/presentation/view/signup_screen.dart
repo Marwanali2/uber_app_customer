@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:uber_app_customer/core/helpers/app_spaces.dart';
 import 'package:uber_app_customer/core/methods/app_notifier.dart';
@@ -7,8 +8,10 @@ import 'package:uber_app_customer/features/authentication/presentation/view/widg
 
 import '../../../../core/styles/app_styles.dart';
 import '../../../../core/widgets/custom_app_button.dart';
+import '../controller/cubit/sign_up_cubit.dart';
 import 'login_screen.dart';
 import 'widgets/logo_and_authentication_text.dart';
+import 'widgets/signup_bloc_listener.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
@@ -35,6 +38,9 @@ class SignUpScreen extends StatelessWidget {
                   onPressed: () async {
                     var connected = await Internet.checkInternetConnection();
                     if (connected) {
+                      if (context.mounted) {
+                        validateAndLogin(context);
+                      }
                     } else {
                       if (context.mounted) {
                         appNotifier(
@@ -64,12 +70,17 @@ class SignUpScreen extends StatelessWidget {
                               color: Colors.blue,
                             )))
                   ],
-                )
+                ),
+                const SignUpBlocListener(),
               ],
             ),
           ),
         ),
       ),
     ));
+  }
+
+  validateAndLogin(BuildContext context) {
+    BlocProvider.of<SignUpCubit>(context).doSignUp();
   }
 }

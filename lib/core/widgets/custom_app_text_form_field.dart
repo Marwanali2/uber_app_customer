@@ -10,16 +10,20 @@ class CustomAppTextFormField extends StatelessWidget {
     this.enabledBorder,
     this.focusedBorder,
     this.prefixIcon,
+    this.keyboardType,
+    this.controller,
   });
   final String hintText;
   final Widget? suffixIcon;
   final bool? obscureText;
   final InputBorder? border, enabledBorder, focusedBorder;
   final Widget? prefixIcon;
-
+  final TextInputType? keyboardType;
+  final TextEditingController? controller;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
       decoration: InputDecoration(
         border: border ??
             OutlineInputBorder(
@@ -43,6 +47,7 @@ class CustomAppTextFormField extends StatelessWidget {
         prefixIcon: prefixIcon,
         suffixIcon: suffixIcon ?? const SizedBox.shrink(),
       ),
+      keyboardType: keyboardType ?? TextInputType.emailAddress,
       obscureText: obscureText ?? false,
     );
   }

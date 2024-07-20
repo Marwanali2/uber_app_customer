@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppStyles {
-  static const TextStyle font26Bold = TextStyle(
-    fontSize: 26,
+  static TextStyle font26Bold = TextStyle(
+    fontSize: 26.sp,
     fontWeight: FontWeight.bold,
   );
 
-  static const TextStyle font20Regular = TextStyle(
-    fontSize: 20,
+  static TextStyle font20Regular = TextStyle(
+    fontSize: 20.sp,
     fontWeight: FontWeight.w400,
   );
 
-  static const TextStyle font14Bold = TextStyle(
-    fontSize: 14,
+  static TextStyle font14Bold = TextStyle(
+    fontSize: 14.sp,
     fontWeight: FontWeight.bold,
+  );
+  static TextStyle font16Regular = TextStyle(
+    fontSize: 16.sp,
+    fontWeight: FontWeight.w400,
   );
 }
