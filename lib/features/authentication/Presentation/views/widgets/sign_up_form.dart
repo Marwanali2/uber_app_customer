@@ -43,6 +43,13 @@ class SignUpForm extends StatelessWidget {
     return null;
   }
 
+  String? validateConfirmPassword(String? value) {
+    if (value == null || !value.isValidPassword) {
+      return 'Please enter a valid password';
+    }
+    return null;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -90,13 +97,7 @@ class SignUpForm extends StatelessWidget {
             hintText: 'Confirm your password',
             keyboardType: TextInputType.visiblePassword,
             onFieldSubmitted: (String value) {},
-            controller: confirmPasswordController,
-            validator: (value) {
-              if (value != passwordController.text) {
-                return 'Passwords do not match';
-              }
-              return null;
-            },
+            validator: validateConfirmPassword!,
           ),
           SizedBox(height: 30.h),
           CustomButton(

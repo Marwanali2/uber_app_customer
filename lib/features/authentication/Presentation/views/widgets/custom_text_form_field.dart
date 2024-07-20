@@ -4,15 +4,15 @@ import 'package:uber_app_customer/core/theming/colors.dart';
 
 // ignore: must_be_immutable
 class CustomTextField extends StatelessWidget {
-  CustomTextField(
-      {super.key,
-      this.label,
-      this.hintText,
-      this.onFieldSubmitted,
-      this.controller,
-      this.keyboardType,
-      this.validator,
-      });
+  CustomTextField({
+    super.key,
+    this.label,
+    this.hintText,
+    this.onFieldSubmitted,
+    this.controller,
+    this.keyboardType,
+    this.validator,
+  });
   String? label;
   String? hintText;
   Function(String)? onFieldSubmitted;
@@ -22,7 +22,7 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       controller: controller,
       keyboardType: keyboardType,
       validator: validator,
