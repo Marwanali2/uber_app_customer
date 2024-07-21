@@ -26,53 +26,56 @@ class SignUpScreen extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: SingleChildScrollView(
-            child: Column(
-              children: [
-                const LogoAndAuthenticationText(
-                  text: 'Create a User Account',
-                ),
-                verticalSpace(20),
-                const SignUpTextFields(),
-                verticalSpace(15),
-                CustomAppButton(
-                  onPressed: () async {
-                    var connected = await Internet.checkInternetConnection();
-                    if (connected) {
-                      if (context.mounted) {
-                        validateAndLogin(context);
-                      }
-                    } else {
-                      if (context.mounted) {
-                        appNotifier(
-                            context,
-                            const CustomSnackBar.error(
-                                message: 'Check Your Internet Connection'));
-                      }
-                    }
-                  },
-                  text: 'Sign Up',
-                  height: 43,
-                ),
-                verticalSpace(15),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text('Already have an account?'),
-                    TextButton(
-                        onPressed: () {
-                          Navigator.pushReplacement(
+            child: Form(
+              key: context.read<SignUpCubit>().formKey,
+              child: Column(
+                children: [
+                  const LogoAndAuthenticationText(
+                    text: 'Create a User Account',
+                  ),
+                  verticalSpace(20),
+                  const SignUpTextFields(),
+                  verticalSpace(15),
+                  CustomAppButton(
+                    onPressed: () async {
+                      var connected = await Internet.checkInternetConnection();
+                      if (connected) {
+                        if (context.mounted) {
+                          validateAndLogin(context);
+                        }
+                      } else {
+                        if (context.mounted) {
+                          appNotifier(
                               context,
-                              MaterialPageRoute(
-                                  builder: (context) => const LoginScreen()));
-                        },
-                        child: Text('Log In',
-                            style: AppStyles.font14Bold.copyWith(
-                              color: Colors.blue,
-                            )))
-                  ],
-                ),
-                const SignUpBlocListener(),
-              ],
+                              const CustomSnackBar.error(
+                                  message: 'Check Your Internet Connection'));
+                        }
+                      }
+                    },
+                    text: 'Sign Up',
+                    height: 43,
+                  ),
+                  verticalSpace(15),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text('Already have an account?'),
+                      TextButton(
+                          onPressed: () {
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const LoginScreen()));
+                          },
+                          child: Text('Log In',
+                              style: AppStyles.font14Bold.copyWith(
+                                color: Colors.blue,
+                              )))
+                    ],
+                  ),
+                  const SignUpBlocListener(),
+                ],
+              ),
             ),
           ),
         ),
@@ -81,6 +84,8 @@ class SignUpScreen extends StatelessWidget {
   }
 
   validateAndLogin(BuildContext context) {
-    BlocProvider.of<SignUpCubit>(context).doSignUp();
+    if (context.read<SignUpCubit>().formKey.currentState!.validate()) {
+      context.read<SignUpCubit>().doSignUp();
+    }
   }
 }

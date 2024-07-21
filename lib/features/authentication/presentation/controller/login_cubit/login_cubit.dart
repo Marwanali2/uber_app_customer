@@ -13,12 +13,14 @@ class LoginCubit extends Cubit<LoginState> {
   LoginCubit(this.authenticationRepo) : super(const LoginState.initial());
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  GlobalKey<FormState> formKey = GlobalKey();
 
   Future<void> doLogin() async {
     emit(const LoginState.loading());
     final result = await authenticationRepo.signIn(
       LoginRequestBody(
-          email: emailController.text, password: passwordController.text),
+          email: emailController.text.trim(),
+          password: passwordController.text.trim()),
     );
 
     result.fold(

@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/helpers/app_spaces.dart';
 import '../../../../../core/widgets/custom_app_text_form_field.dart';
-import '../../controller/cubit/login_cubit.dart';
+import '../../controller/login_cubit/login_cubit.dart';
 
 class LoginTextFields extends StatefulWidget {
   const LoginTextFields({super.key});
@@ -34,15 +34,26 @@ class _LoginTextFieldsState extends State<LoginTextFields> {
   Widget build(BuildContext context) {
     return Column(children: [
       CustomAppTextFormField(
-        controller: emailController,
-        hintText: 'Email',
-        prefixIcon: const Icon(
-          Icons.email,
-          color: Colors.grey,
-        ),
-      ),
+          validator: (value) {
+            if (value!.isEmpty) {
+              return 'Please Enter Email';
+            }
+            return null;
+          },
+          controller: emailController,
+          hintText: 'Email',
+          prefixIcon: const Icon(
+            Icons.email,
+            color: Colors.grey,
+          )),
       verticalSpace(10),
       CustomAppTextFormField(
+        validator: (value) {
+          if (value!.isEmpty) {
+            return 'Please Enter Password';
+          }
+          return null;
+        },
         controller: passwordController,
         hintText: 'Password',
         suffixIcon: IconButton(

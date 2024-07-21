@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:uber_app_customer/core/methods/app_notifier.dart';
-import 'package:uber_app_customer/features/authentication/presentation/controller/cubit/login_cubit.dart';
+import 'package:uber_app_customer/features/authentication/presentation/controller/login_cubit/login_cubit.dart';
 import 'package:uber_app_customer/features/home/presentation/view/home_scree.dart';
 
 import '../../../../../core/widgets/loading_indicator.dart';
@@ -13,6 +13,8 @@ class LoginBlocListener extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocListener<LoginCubit, LoginState>(
+        listenWhen: (previous, current) =>
+            current is Success || current is Failure || current is Loading,
         listener: (context, state) {
           if (state is Failure) {
             Navigator.pop(context);

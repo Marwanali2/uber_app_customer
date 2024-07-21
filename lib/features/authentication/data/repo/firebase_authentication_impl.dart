@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:uber_app_customer/features/authentication/data/models/login_request_body.dart';
 import 'package:uber_app_customer/features/authentication/data/repo/authentication_repo.dart';
 

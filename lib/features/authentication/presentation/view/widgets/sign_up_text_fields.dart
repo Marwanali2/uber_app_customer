@@ -41,6 +41,12 @@ class _SignUpTextFieldsState extends State<SignUpTextFields> {
   Widget build(BuildContext context) {
     return Column(children: [
       CustomAppTextFormField(
+        validator: (value) {
+          if (value!.isEmpty) {
+            return 'Please Enter User Name';
+          }
+          return null;
+        },
         controller: userNameController,
         hintText: 'User Name',
         prefixIcon: const Icon(
@@ -50,6 +56,12 @@ class _SignUpTextFieldsState extends State<SignUpTextFields> {
       ),
       verticalSpace(10),
       CustomAppTextFormField(
+        validator: (value) {
+          if (value!.isEmpty) {
+            return 'Please Enter Phone';
+          }
+          return null;
+        },
         controller: phoneController,
         keyboardType: TextInputType.phone,
         hintText: 'Phone',
@@ -60,6 +72,12 @@ class _SignUpTextFieldsState extends State<SignUpTextFields> {
       ),
       verticalSpace(10),
       CustomAppTextFormField(
+        validator: (value) {
+          if (value!.isEmpty) {
+            return 'Please Enter Email';
+          }
+          return null;
+        },
         controller: emailController,
         hintText: 'Email',
         prefixIcon: const Icon(
@@ -69,6 +87,12 @@ class _SignUpTextFieldsState extends State<SignUpTextFields> {
       ),
       verticalSpace(10),
       CustomAppTextFormField(
+        validator: (value) {
+          if (value!.isEmpty) {
+            return 'Please Enter Password';
+          }
+          return null;
+        },
         controller: passwordController,
         hintText: 'Password',
         suffixIcon: IconButton(

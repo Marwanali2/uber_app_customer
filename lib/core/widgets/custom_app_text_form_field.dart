@@ -12,6 +12,7 @@ class CustomAppTextFormField extends StatelessWidget {
     this.prefixIcon,
     this.keyboardType,
     this.controller,
+    this.validator,
   });
   final String hintText;
   final Widget? suffixIcon;
@@ -20,10 +21,13 @@ class CustomAppTextFormField extends StatelessWidget {
   final Widget? prefixIcon;
   final TextInputType? keyboardType;
   final TextEditingController? controller;
+  final String? Function(String?)? validator;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      validator: validator,
       controller: controller,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       decoration: InputDecoration(
         border: border ??
             OutlineInputBorder(
