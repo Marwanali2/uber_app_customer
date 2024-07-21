@@ -12,6 +12,7 @@ class CustomButton extends StatelessWidget {
       style: ButtonStyle(
           backgroundColor: WidgetStateProperty.all(Colors.white),
           minimumSize: WidgetStateProperty.all(const Size(double.infinity, 50)),
+          padding: WidgetStateProperty.all(const EdgeInsets.all(10)),
           shape: WidgetStateProperty.all(RoundedRectangleBorder(
               side: const BorderSide(color: AppColorStyles.semiBlue),
               borderRadius: BorderRadius.circular(10)))),

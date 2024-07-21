@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:uber_app_customer/core/routing/routes.dart';
+import 'package:uber_app_customer/core/utils/functions/check_internet_connection.dart';
 import 'package:uber_app_customer/core/utils/validators.dart';
 import 'package:uber_app_customer/features/authentication/Presentation/views/widgets/custom_button.dart';
 import 'package:uber_app_customer/features/authentication/Presentation/views/widgets/custom_text_form_field.dart';
@@ -97,15 +98,22 @@ class SignUpForm extends StatelessWidget {
             hintText: 'Confirm your password',
             keyboardType: TextInputType.visiblePassword,
             onFieldSubmitted: (String value) {},
-            validator: validateConfirmPassword!,
+            validator: validateConfirmPassword,
           ),
           SizedBox(height: 30.h),
           CustomButton(
-            onPressed: () {
+            onPressed: () async {
+              bool isInternetConnected =
+                  await AppMethods.checkInternetConnection(context);
+              isInternetConnected == false
+                  ? print('No internet connection')
+                  : print('Internet connection available');
+            
+              await AppMethods.checkInternetConnection(context);
               if (formKey.currentState!.validate()) {
-                // Process the sign-up
+                // Your form submission logic here
               } else {
-                // Show error message
+                print('Form is invalid');
               }
             },
             text: 'Sign Up',

@@ -1,3 +1,4 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:uber_app_customer/core/routing/app_router.dart';
@@ -11,6 +12,9 @@ class UberCustomerApp extends StatelessWidget {
         designSize: const Size(360, 690),
         minTextAdapt: true,
         splitScreenMode: true,
+         useInheritedMediaQuery: true,
+      //locale: DevicePreview.locale(context),
+      builder: DevicePreview.appBuilder,
         child: MaterialApp.router(
           routerConfig: AppRouter.router,
           title: 'Uber Customer App',
