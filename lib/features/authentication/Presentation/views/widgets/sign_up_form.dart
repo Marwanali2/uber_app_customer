@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:uber_app_customer/core/routing/routes.dart';
 import 'package:uber_app_customer/core/utils/functions/check_internet_connection.dart';
 import 'package:uber_app_customer/core/utils/validators.dart';
+import 'package:uber_app_customer/core/widgets/custom_loading_widget.dart';
 import 'package:uber_app_customer/features/authentication/Presentation/views/widgets/custom_button.dart';
 import 'package:uber_app_customer/features/authentication/Presentation/views/widgets/custom_text_form_field.dart';
 
@@ -103,13 +104,14 @@ class SignUpForm extends StatelessWidget {
           SizedBox(height: 30.h),
           CustomButton(
             onPressed: () async {
-              bool isInternetConnected =
-                  await AppMethods.checkInternetConnection(context);
-              isInternetConnected == false
-                  ? print('No internet connection')
-                  : print('Internet connection available');
-            
-              await AppMethods.checkInternetConnection(context);
+              
+              // bool isInternetConnected =
+              //     await AppMethods.checkInternetConnection(context);
+              // isInternetConnected == false
+              //     ? print('No internet connection')
+              //     : print('Internet connection available');
+
+              // await AppMethods.checkInternetConnection(context);
               if (formKey.currentState!.validate()) {
                 // Your form submission logic here
               } else {
