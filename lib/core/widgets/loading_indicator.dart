@@ -27,7 +27,7 @@ class LoadingIndicator extends StatelessWidget {
                 horizontalSpace(5),
                 CircularProgressIndicator(
                   valueColor: AlwaysStoppedAnimation<Color>(
-                      Theme.of(context).colorScheme.onSecondary),
+                      Theme.of(context).colorScheme.secondary),
                 ),
                 horizontalSpace(8),
                 Text(text,

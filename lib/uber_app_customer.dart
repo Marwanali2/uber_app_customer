@@ -15,6 +15,7 @@ class UberCustomerApp extends StatelessWidget {
         splitScreenMode: true,
         useInheritedMediaQuery: true,
         child: MaterialApp.router(
+          debugShowCheckedModeBanner: false,
           routerConfig: AppRouter.router,
           title: 'Uber Customer App',
           theme: AppTheme.lightTheme,
