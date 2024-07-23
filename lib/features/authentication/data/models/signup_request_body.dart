@@ -1,21 +1,21 @@
-// import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-// part 'signup_request_body.g.dart';
+part 'signup_request_body.g.dart';
 
-// @JsonSerializable()
-// class SignUpRequestBody {
-//   final String name;
-//   final String email;
-//   final String password;
-//   final String phone;
-//   final String blockState;
-//   SignUpRequestBody({
-//     this.blockState = 'true',
-//     required this.name,
-//     required this.email,
-//     required this.password,
-//     required this.phone,
-//   });
+@JsonSerializable()
+class SignUpRequestBody {
+  final String name;
+  final String email;
+  final String password;
+  final String phone;
+  final String blockState;
+  SignUpRequestBody({
+    this.blockState = 'true',
+    required this.name,
+    required this.email,
+    required this.password,
+    required this.phone,
+  });
 
-//   Map<String, dynamic> toJson() => _$SignUpRequestBodyToJson(this);
-// }
+  Map<String, dynamic> toJson() => _$SignUpRequestBodyToJson(this);
+}
