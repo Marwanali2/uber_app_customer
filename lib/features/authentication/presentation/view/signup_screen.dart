@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:uber_app_customer/core/helpers/app_spaces.dart';
 import 'package:uber_app_customer/core/methods/app_notifier.dart';
 import 'package:uber_app_customer/core/methods/internet_connection.dart';
+import 'package:uber_app_customer/core/routing/routes.dart';
 import 'package:uber_app_customer/features/authentication/presentation/view/widgets/sign_up_text_fields.dart';
 
 import '../../../../core/styles/app_styles.dart';
@@ -62,10 +64,7 @@ class SignUpScreen extends StatelessWidget {
                       const Text('Already have an account?'),
                       TextButton(
                           onPressed: () {
-                            Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const LoginScreen()));
+                            GoRouter.of(context).push(Routes.loginSCreen);
                           },
                           child: Text('Log In',
                               style: AppStyles.font14Bold.copyWith(

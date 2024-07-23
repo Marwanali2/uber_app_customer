@@ -7,5 +7,5 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await ScreenUtil.ensureScreenSize();
   await Firebase.initializeApp();
-  runApp(const UberAppCustomer());
+  runApp(const UberCustomerApp());
 }

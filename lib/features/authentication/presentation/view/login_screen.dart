@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:uber_app_customer/core/styles/app_styles.dart';
 import 'package:uber_app_customer/features/authentication/data/repo/firebase_authentication_impl.dart';
@@ -9,6 +10,7 @@ import 'package:uber_app_customer/features/authentication/presentation/controlle
 import '../../../../core/helpers/app_spaces.dart';
 import '../../../../core/methods/app_notifier.dart';
 import '../../../../core/methods/internet_connection.dart';
+import '../../../../core/routing/routes.dart';
 import '../../../../core/widgets/custom_app_button.dart';
 import 'signup_screen.dart';
 import 'widgets/login_bloc_listener.dart';
@@ -64,14 +66,7 @@ class LoginScreen extends StatelessWidget {
                       const Text('Don\'t have an account?'),
                       TextButton(
                           onPressed: () {
-                            Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => BlocProvider(
-                                          create: (context) => SignUpCubit(
-                                              FirebaseAuthenticationImpl()),
-                                          child: const SignUpScreen(),
-                                        )));
+                            GoRouter.of(context).push(Routes.signUpScreen);
                           },
                           child: Text(
                             'Sign Up',

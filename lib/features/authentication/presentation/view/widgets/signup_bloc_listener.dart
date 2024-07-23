@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:uber_app_customer/core/methods/app_notifier.dart';
-import 'package:uber_app_customer/features/home/presentation/view/home_scree.dart';
 
+import '../../../../../core/routing/routes.dart';
 import '../../../../../core/widgets/loading_indicator.dart';
 import '../../controller/signup_cubit/sign_up_cubit.dart';
 
@@ -18,9 +19,8 @@ class SignUpBlocListener extends StatelessWidget {
             Navigator.pop(context);
             appNotifier(context, CustomSnackBar.error(message: state.message));
           } else if (state is Success) {
-            Navigator.pop(context);
-            Navigator.pushReplacement(context,
-                MaterialPageRoute(builder: (context) => const HomeScree()));
+            GoRouter.of(context).pop();
+            GoRouter.of(context).push(Routes.homeScreen);
           } else if (state is Loading) {
             showDialog(
                 context: context,
