@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:uber_app_customer/core/helpers/validators.dart';
 import 'package:uber_app_customer/features/authentication/data/repo/authentication_repo.dart';
 
 import '../../../data/models/login_request_body.dart';
@@ -28,4 +29,21 @@ class LoginCubit extends Cubit<LoginState> {
       (r) => emit(const LoginState.success()),
     );
   }
+
+// Login Email and Password Validators...
+
+  String? validateEmail(String? value) {
+    if (value == null || !value.isValidEmail) {
+      return 'Please enter a valid email';
+    }
+    return null;
+  }
+
+  String? validatePassword(String? value) {
+    if (value == null || !value.isValidPassword) {
+      return 'Please enter a valid password';
+    }
+    return null;
+  }
+
 }
