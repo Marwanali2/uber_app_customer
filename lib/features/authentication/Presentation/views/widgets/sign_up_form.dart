@@ -1,21 +1,50 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:uber_app_customer/core/routing/routes.dart';
-import 'package:uber_app_customer/core/utils/functions/check_internet_connection.dart';
 import 'package:uber_app_customer/core/utils/validators.dart';
-import 'package:uber_app_customer/core/widgets/custom_loading_widget.dart';
+import 'package:uber_app_customer/features/authentication/Presentation/managers/signup_cubit/sign_up_cubit.dart';
 import 'package:uber_app_customer/features/authentication/Presentation/views/widgets/custom_button.dart';
 import 'package:uber_app_customer/features/authentication/Presentation/views/widgets/custom_text_form_field.dart';
 
-class SignUpForm extends StatelessWidget {
+class SignUpForm extends StatefulWidget {
   SignUpForm({super.key});
-  TextEditingController fullNameController = TextEditingController();
-  TextEditingController phoneNumberController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  TextEditingController confirmPasswordController = TextEditingController();
+
+  @override
+  State<SignUpForm> createState() => _SignUpFormState();
+}
+
+class _SignUpFormState extends State<SignUpForm> {
   GlobalKey<FormState> formKey = GlobalKey();
+
+  bool obscureText = true;
+
+  late TextEditingController fullNameController;
+
+  late TextEditingController phoneNumberController;
+
+  late TextEditingController emailController;
+
+  late TextEditingController passwordController;
+
+  @override
+  initState() {
+    fullNameController = context.read<SignUpCubit>().userNameController;
+    phoneNumberController = context.read<SignUpCubit>().phoneController;
+    emailController = context.read<SignUpCubit>().emailController;
+    passwordController = context.read<SignUpCubit>().passwordController;
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    fullNameController.dispose();
+    phoneNumberController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 
   String? validateName(String? value) {
     if (value == null || !value.isValidName) {
@@ -104,7 +133,6 @@ class SignUpForm extends StatelessWidget {
           SizedBox(height: 30.h),
           CustomButton(
             onPressed: () async {
-              
               // bool isInternetConnected =
               //     await AppMethods.checkInternetConnection(context);
               // isInternetConnected == false
@@ -113,7 +141,8 @@ class SignUpForm extends StatelessWidget {
 
               // await AppMethods.checkInternetConnection(context);
               if (formKey.currentState!.validate()) {
-                // Your form submission logic here
+                context.read<SignUpCubit>().doSignUp();
+                print('signup Form is valid');
               } else {
                 print('Form is invalid');
               }

@@ -1,20 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:uber_app_customer/core/routing/routes.dart';
 import 'package:uber_app_customer/core/utils/validators.dart';
+import 'package:uber_app_customer/features/authentication/Presentation/managers/login_cubit/login_cubit.dart';
 import 'package:uber_app_customer/features/authentication/Presentation/views/widgets/custom_button.dart';
 import 'package:uber_app_customer/features/authentication/Presentation/views/widgets/custom_text_form_field.dart';
 
 // ignore: must_be_immutable
-class LoginForm extends StatelessWidget {
+class LoginForm extends StatefulWidget {
   LoginForm({super.key});
-  TextEditingController fullNameController = TextEditingController();
-  TextEditingController phoneNumberController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  TextEditingController confirmPasswordController = TextEditingController();
+
+  @override
+  State<LoginForm> createState() => _LoginFormState();
+}
+
+class _LoginFormState extends State<LoginForm> {
   GlobalKey<FormState> formKey = GlobalKey();
+   bool obscureText = true;
+  late TextEditingController emailController;
+  late TextEditingController passwordController;
+
+  @override
+  void initState() {
+    emailController = context.read<LoginCubit>().emailController;
+    passwordController = context.read<LoginCubit>().passwordController;
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
 
   String? validateEmail(String? value) {
     if (value == null || !value.isValidEmail) {
@@ -57,6 +78,7 @@ class LoginForm extends StatelessWidget {
           CustomButton(
             onPressed: () {
               if (formKey.currentState!.validate()) {
+                context.read<LoginCubit>().doLogin();
               } else {}
             },
             text: 'Login',
