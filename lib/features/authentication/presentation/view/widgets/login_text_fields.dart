@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:uber_app_customer/core/helpers/validators.dart';
 
 import '../../../../../core/helpers/app_spaces.dart';
 import '../../../../../core/widgets/custom_app_text_form_field.dart';
@@ -16,6 +17,7 @@ class _LoginTextFieldsState extends State<LoginTextFields> {
   bool obscureText = true;
   late TextEditingController emailController;
   late TextEditingController passwordController;
+
   @override
   void initState() {
     emailController = context.read<LoginCubit>().emailController;
@@ -34,9 +36,9 @@ class _LoginTextFieldsState extends State<LoginTextFields> {
   Widget build(BuildContext context) {
     return Column(children: [
       CustomAppTextFormField(
-          validator: (value) {
-            if (value!.isEmpty) {
-              return 'Please Enter Email';
+          validator: (String? value) {
+            if (value == null || !value.isValidEmail) {
+              return 'Please enter a valid email';
             }
             return null;
           },
@@ -48,9 +50,9 @@ class _LoginTextFieldsState extends State<LoginTextFields> {
           )),
       verticalSpace(10),
       CustomAppTextFormField(
-        validator: (value) {
-          if (value!.isEmpty) {
-            return 'Please Enter Password';
+        validator: (String? value) {
+          if (value == null || !value.isValidPassword) {
+            return 'Please enter a valid password';
           }
           return null;
         },

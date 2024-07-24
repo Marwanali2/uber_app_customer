@@ -8,7 +8,7 @@ part of 'signup_request_body.dart';
 
 SignUpRequestBody _$SignUpRequestBodyFromJson(Map<String, dynamic> json) =>
     SignUpRequestBody(
-      blockState: json['blockState'] as String? ?? 'true',
+      blockState: json['blockState'] as String? ?? 'false',
       name: json['name'] as String,
       email: json['email'] as String,
       password: json['password'] as String,

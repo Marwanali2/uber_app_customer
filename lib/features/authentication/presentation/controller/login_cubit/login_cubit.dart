@@ -30,20 +30,9 @@ class LoginCubit extends Cubit<LoginState> {
     );
   }
 
-// Login Email and Password Validators...
+// Login Email and Password Validators
 
-  String? validateEmail(String? value) {
-    if (value == null || !value.isValidEmail) {
-      return 'Please enter a valid email';
-    }
-    return null;
-  }
+  // String? validateEmail
 
-  String? validatePassword(String? value) {
-    if (value == null || !value.isValidPassword) {
-      return 'Please enter a valid password';
-    }
-    return null;
-  }
-
+  // String? validatePassword
 }
