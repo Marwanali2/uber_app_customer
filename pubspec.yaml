@@ -54,6 +54,7 @@ dependencies:
   dartz: ^0.10.1
   # analyzer: ^6.4.1
   build_runner: ^2.4.11 
+  flutter_bloc: ^8.1.6
 
 dev_dependencies:
   flutter_test:
