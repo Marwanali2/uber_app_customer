@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:uber_app_customer/core/network/constants.dart';
 import 'package:uber_app_customer/features/authentication/data/models/login_request_body.dart';
 import 'package:uber_app_customer/features/authentication/data/repo/authentication_repo.dart';
 
@@ -23,7 +24,7 @@ class FirebaseAuthenticationImpl implements AuthenticationRepo {
       DatabaseReference userRef =
           FirebaseDatabase.instance.ref().child('users').child(user!.uid);
       userRef.set(signUpRequestBody.toJson());
-      print(user.uid);
+
       return const Right(null);
     } on FirebaseAuthException catch (e) {
       return Left(ErrorHandler(error: e.message.toString()));
@@ -48,8 +49,8 @@ class FirebaseAuthenticationImpl implements AuthenticationRepo {
       var value = await userRef.once();
 
       if (value.snapshot.value != null) {
-        print((value.snapshot.value as Map)['blockState']);
         if ((value.snapshot.value as Map)['blockState'] == 'true') {
+          Constants.userName = (value.snapshot.value as Map)['name'];
           FirebaseAuth.instance.signOut();
           return Left(ErrorHandler(error: 'This user is blocked'));
         } else {
