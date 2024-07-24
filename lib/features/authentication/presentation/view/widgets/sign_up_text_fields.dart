@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:uber_app_customer/core/helpers/validators.dart';
 
 import '../../../../../core/helpers/app_spaces.dart';
 import '../../../../../core/widgets/custom_app_text_form_field.dart';
@@ -41,12 +42,12 @@ class _SignUpTextFieldsState extends State<SignUpTextFields> {
   Widget build(BuildContext context) {
     return Column(children: [
       CustomAppTextFormField(
-        validator: (value) {
-          if (value!.isEmpty) {
-            return 'Please Enter User Name';
-          }
-          return null;
-        },
+     validator: (String? value) {
+            if (value == null || !value.isValidName) {
+              return 'Please enter a valid name';
+            }
+            return null;
+          },
         controller: userNameController,
         hintText: 'User Name',
         prefixIcon: const Icon(
@@ -56,12 +57,12 @@ class _SignUpTextFieldsState extends State<SignUpTextFields> {
       ),
       verticalSpace(10),
       CustomAppTextFormField(
-        validator: (value) {
-          if (value!.isEmpty) {
-            return 'Please Enter Phone';
-          }
-          return null;
-        },
+        validator: (String? value) {
+            if (value == null || !value.isValidPhone) {
+              return 'Please enter a valid phone';
+            }
+            return null;
+          },
         controller: phoneController,
         keyboardType: TextInputType.phone,
         hintText: 'Phone',
@@ -72,12 +73,12 @@ class _SignUpTextFieldsState extends State<SignUpTextFields> {
       ),
       verticalSpace(10),
       CustomAppTextFormField(
-        validator: (value) {
-          if (value!.isEmpty) {
-            return 'Please Enter Email';
-          }
-          return null;
-        },
+          validator: (String? value) {
+            if (value == null || !value.isValidEmail) {
+              return 'Please enter a valid email';
+            }
+            return null;
+          },
         controller: emailController,
         hintText: 'Email',
         prefixIcon: const Icon(
@@ -87,12 +88,12 @@ class _SignUpTextFieldsState extends State<SignUpTextFields> {
       ),
       verticalSpace(10),
       CustomAppTextFormField(
-        validator: (value) {
-          if (value!.isEmpty) {
-            return 'Please Enter Password';
-          }
-          return null;
-        },
+        validator: (String? value) {
+            if (value == null || !value.isValidPassword) {
+              return 'Please enter a valid password';
+            }
+            return null;
+          },
         controller: passwordController,
         hintText: 'Password',
         suffixIcon: IconButton(
