@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1051075808560",
+    "project_id": "flutter-uber-clone-with-dc2f6",
+    "storage_bucket": "flutter-uber-clone-with-dc2f6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1051075808560:android:438900419bf6ab587f0cf5",
+        "android_client_info": {
+          "package_name": "com.example.uber_app_customer"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9KSAYGlOq4G848lUkWm0MV-So61B5Q_s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
