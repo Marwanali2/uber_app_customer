@@ -3,16 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:uber_app_customer/core/styles/app_styles.dart';
-import 'package:uber_app_customer/features/authentication/data/repo/firebase_authentication_impl.dart';
 import 'package:uber_app_customer/features/authentication/presentation/controller/login_cubit/login_cubit.dart';
-import 'package:uber_app_customer/features/authentication/presentation/controller/signup_cubit/sign_up_cubit.dart';
-
 import '../../../../core/helpers/app_spaces.dart';
 import '../../../../core/methods/app_notifier.dart';
 import '../../../../core/methods/internet_connection.dart';
 import '../../../../core/routing/routes.dart';
 import '../../../../core/widgets/custom_app_button.dart';
-import 'signup_screen.dart';
 import 'widgets/login_bloc_listener.dart';
 import 'widgets/login_text_fields.dart';
 import 'widgets/logo_and_authentication_text.dart';

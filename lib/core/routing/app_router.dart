@@ -26,7 +26,7 @@ abstract class AppRouter {
             )),
     GoRoute(
       path: Routes.homeScreen,
-      builder: (context, state) => const HomeScree(),
+      builder: (context, state) => const HomeScreen(),
     )
   ]);
 }
