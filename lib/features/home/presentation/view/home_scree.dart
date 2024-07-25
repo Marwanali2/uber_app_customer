@@ -8,7 +8,9 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Stack(
-      children: [MapWidget()],
+      children: [
+        MapWidget(),
+      ],
     );
   }
 }
