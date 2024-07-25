@@ -21,10 +21,8 @@ class FirebaseAuthenticationImpl implements AuthenticationRepo {
       ))
               .user;
 
-      DatabaseReference userRef =
-          FirebaseDatabase.instance.ref().child('users').child(user!.uid);
-      userRef.set(signUpRequestBody.toJson());
-
+      await addUserInformation(signUpRequestBody, user: user);
+      await sendEmailVerification();
       return const Right(null);
     } on FirebaseAuthException catch (e) {
       return Left(ErrorHandler(error: e.message.toString()));
@@ -33,6 +31,16 @@ class FirebaseAuthenticationImpl implements AuthenticationRepo {
     } catch (e) {
       return Left(ErrorHandler(error: 'Something went wrong'));
     }
+  }
+
+  addUserInformation(SignUpRequestBody signUpRequestBody, {User? user}) async {
+    DatabaseReference userRef =
+        FirebaseDatabase.instance.ref().child('users').child(user!.uid);
+    await userRef.set(signUpRequestBody.toJson());
+  }
+
+  sendEmailVerification() async {
+    FirebaseAuth.instance.currentUser!.sendEmailVerification();
   }
 
   @override
@@ -53,6 +61,11 @@ class FirebaseAuthenticationImpl implements AuthenticationRepo {
           Constants.userName = (value.snapshot.value as Map)['name'];
           FirebaseAuth.instance.signOut();
           return Left(ErrorHandler(error: 'This user is blocked'));
+        } else if ((FirebaseAuth.instance.currentUser!.emailVerified) ==
+            false) {
+          return Left(ErrorHandler(
+              error:
+                  'Please verify your email, a link has been sent to your email'));
         } else {
           return const Right(null);
         }

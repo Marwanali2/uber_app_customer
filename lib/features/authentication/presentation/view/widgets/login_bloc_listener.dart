@@ -20,7 +20,13 @@ class LoginBlocListener extends StatelessWidget {
         listener: (context, state) {
           if (state is Failure) {
             Navigator.pop(context);
-            appNotifier(context, CustomSnackBar.error(message: state.message));
+            if (state.message ==
+                'Please verify your email, a link has been sent to your email') {
+              appNotifier(context, CustomSnackBar.info(message: state.message));
+            } else {
+              appNotifier(
+                  context, CustomSnackBar.error(message: state.message));
+            }
           } else if (state is Success) {
             GoRouter.of(context).pop();
             GoRouter.of(context).push(Routes.homeScreen);

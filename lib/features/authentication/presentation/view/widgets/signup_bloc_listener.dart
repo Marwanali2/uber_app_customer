@@ -20,7 +20,11 @@ class SignUpBlocListener extends StatelessWidget {
             appNotifier(context, CustomSnackBar.error(message: state.message));
           } else if (state is Success) {
             GoRouter.of(context).pop();
-            GoRouter.of(context).push(Routes.homeScreen);
+            appNotifier(
+                context,
+                const CustomSnackBar.info(
+                    message:
+                        'Please verify your email, a link has been sent to your email, then login'));
           } else if (state is Loading) {
             showDialog(
                 context: context,
