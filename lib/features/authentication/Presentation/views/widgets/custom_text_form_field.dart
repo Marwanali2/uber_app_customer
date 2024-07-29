@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:uber_app_customer/core/theming/app_theme.dart';
 import 'package:uber_app_customer/core/theming/colors.dart';
 
 // ignore: must_be_immutable
@@ -43,7 +44,7 @@ class CustomTextField extends StatelessWidget {
 
         label: Text(
           "$label",
-          style: const TextStyle(color: Colors.white),
+          style: TextStyle(color: AppTheme.lightTheme.colorScheme.onSecondary),
         ),
         hintText: "$hintText",
         hintStyle: const TextStyle(color: Colors.white),
